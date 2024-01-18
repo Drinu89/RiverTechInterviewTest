@@ -32,7 +32,8 @@ public partial class ApiValidationFeature : FeatureFixture
         Assert.That(expectedResponseCode, Is.EqualTo(_apiResponseCode));
     }
     
-    private void Then_the_api_response_return_the_fields_and_values()
+    private void Then_the_api_response_return_the_fields_and_values(int expectedId, string expectedName, string expectedUsername, string expectedEmail, string expectedStreet, string expectedSuite,
+        string expectedCity, string expectedZipCode, string expectedGeoLat, string expectedGeoLng, string expectedPhone, string expectedWebsite, string expectedCompanyName, string expectedCompanyCachePhrase, string expectedCompanyBs)
     {
 
         _apiResponse = JsonConvert.DeserializeObject<ApiResponse>(_apiBody);
@@ -61,25 +62,25 @@ public partial class ApiValidationFeature : FeatureFixture
         Assert.That(_apiResponse.company.bs, Is.Not.Null.Or.Empty);
         
         //Here I am asserting the values inside the fields.
-        Assert.AreEqual(1, _apiResponse.id);
-        Assert.AreEqual("Leanne Graham", _apiResponse.name);
-        Assert.AreEqual("Bret", _apiResponse.username);
-        Assert.AreEqual("Sincere@april.biz", _apiResponse.email);
+        Assert.AreEqual(expectedId, _apiResponse.id);
+        Assert.AreEqual(expectedName, _apiResponse.name);
+        Assert.AreEqual(expectedUsername, _apiResponse.username);
+        Assert.AreEqual(expectedEmail, _apiResponse.email);
         
-        Assert.AreEqual("Kulas Light", _apiResponse.address.street);
-        Assert.AreEqual("Apt. 556", _apiResponse.address.suite);
-        Assert.AreEqual("Gwenborough", _apiResponse.address.city);
-        Assert.AreEqual("92998-3874", _apiResponse.address.zipcode);
+        Assert.AreEqual(expectedStreet, _apiResponse.address.street);
+        Assert.AreEqual(expectedSuite, _apiResponse.address.suite);
+        Assert.AreEqual(expectedCity, _apiResponse.address.city);
+        Assert.AreEqual(expectedZipCode, _apiResponse.address.zipcode);
         
-        Assert.AreEqual("-37.3159", _apiResponse.address.geo.lat);
-        Assert.AreEqual("81.1496", _apiResponse.address.geo.lng);
+        Assert.AreEqual(expectedGeoLat, _apiResponse.address.geo.lat);
+        Assert.AreEqual(expectedGeoLng, _apiResponse.address.geo.lng);
         
-        Assert.AreEqual("1-770-736-8031 x56442", _apiResponse.phone);
-        Assert.AreEqual("hildegard.org", _apiResponse.website);
+        Assert.AreEqual(expectedPhone, _apiResponse.phone);
+        Assert.AreEqual(expectedWebsite, _apiResponse.website);
         
-        Assert.AreEqual("Romaguera-Crona", _apiResponse.company.name);
-        Assert.AreEqual("Multi-layered client-server neural-net", _apiResponse.company.catchPhrase);
-        Assert.AreEqual("harness real-time e-markets", _apiResponse.company.bs);
+        Assert.AreEqual(expectedCompanyName, _apiResponse.company.name);
+        Assert.AreEqual(expectedCompanyCachePhrase, _apiResponse.company.catchPhrase);
+        Assert.AreEqual(expectedCompanyBs, _apiResponse.company.bs);
 
     }
 }
