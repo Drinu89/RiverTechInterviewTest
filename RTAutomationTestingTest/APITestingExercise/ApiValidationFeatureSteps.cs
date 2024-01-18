@@ -36,6 +36,32 @@ public partial class ApiValidationFeature : FeatureFixture
     {
 
         _apiResponse = JsonConvert.DeserializeObject<ApiResponse>(_apiBody);
+        
+        //Here I am asserting that the fields are not null or empty. This will assert that the fields are available.
+        Assert.AreEqual(1, _apiResponse.id);
+        Assert.That(_apiResponse.name, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.username, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.email, Is.Not.Null.Or.Empty);
+
+        Assert.That(_apiResponse.address, Is.Not.Null);
+        Assert.That(_apiResponse.address.street, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.address.suite, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.address.city, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.address.zipcode, Is.Not.Null.Or.Empty);
+
+        Assert.That(_apiResponse.address.geo, Is.Not.Null);
+        Assert.That(_apiResponse.address.geo.lat, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.address.geo.lng, Is.Not.Null.Or.Empty);
+
+        Assert.That(_apiResponse.phone, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.website, Is.Not.Null.Or.Empty);
+
+        Assert.That(_apiResponse.company, Is.Not.Null);
+        Assert.That(_apiResponse.company.name, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.company.catchPhrase, Is.Not.Null.Or.Empty);
+        Assert.That(_apiResponse.company.bs, Is.Not.Null.Or.Empty);
+        
+        //Here I am asserting the values inside the fields.
         Assert.AreEqual(1, _apiResponse.id);
         Assert.AreEqual("Leanne Graham", _apiResponse.name);
         Assert.AreEqual("Bret", _apiResponse.username);
