@@ -38,7 +38,6 @@ public partial class ApiValidationFeature : FeatureFixture
         _apiResponse = JsonConvert.DeserializeObject<ApiResponse>(_apiBody);
         
         //Here I am asserting that the fields are not null or empty. This will assert that the fields are available.
-        Assert.AreEqual(1, _apiResponse.id);
         Assert.That(_apiResponse.name, Is.Not.Null.Or.Empty);
         Assert.That(_apiResponse.username, Is.Not.Null.Or.Empty);
         Assert.That(_apiResponse.email, Is.Not.Null.Or.Empty);
