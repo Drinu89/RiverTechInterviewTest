@@ -32,7 +32,7 @@ public partial class ApiValidationFeature : FeatureFixture
         Assert.That(expectedResponseCode, Is.EqualTo(_apiResponseCode));
     }
     
-    private void Then_the_api_response_return_the_fields_and_values(string expectedJson)
+    private void Then_the_api_response_return_the_fields_and_values()
     {
 
         _apiResponse = JsonConvert.DeserializeObject<ApiResponse>(_apiBody);
